@@ -13,6 +13,7 @@ const App: React.FC = () => {
     <div className="App">
       <DashboardContainer />
     </div>
+    //{" "}
     // </Provider>
   );
 };
