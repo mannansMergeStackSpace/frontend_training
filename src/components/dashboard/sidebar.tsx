@@ -1,6 +1,8 @@
 import MuiDrawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 import { Box, List, ListItem, Typography } from "@mui/material";
+import { AppRoutesEnum } from "../../constants/enums/routes.enum";
+import { Link } from "react-router-dom";
 
 const drawerWidth: number = 305;
 
@@ -19,30 +21,42 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const listItems = [
+interface sidebarListItem {
+  label: string;
+  icon: string;
+  to: string;
+}
+
+const listItems: sidebarListItem[] = [
   {
     label: "Profile",
     icon: "/icons/Profile.svg",
+    to: AppRoutesEnum.PROFILE,
   },
   {
     label: "Billings",
     icon: "/icons/Document.svg",
+    to: AppRoutesEnum.BILLINGS,
   },
   {
     label: "Invoices",
     icon: "/icons/Wallet.svg",
+    to: AppRoutesEnum.INVOICES,
   },
   {
     label: "Settings",
     icon: "/icons/Setting.svg",
+    to: AppRoutesEnum.SETTINGS,
   },
   {
     label: "Help",
     icon: "/icons/Calling.svg",
+    to: AppRoutesEnum.HELP,
   },
   {
     label: "Logout",
     icon: "/icons/Logout.svg",
+    to: AppRoutesEnum.LOGOUT,
   },
 ];
 
@@ -56,7 +70,7 @@ const SideBar = () => {
         display={"flex"}
         alignItems={"center"}
         width={"141.11px"}
-        height={"46.11px"}
+        height={"100%"}
       >
         <img
           src="/icons/logo.svg"
@@ -68,7 +82,7 @@ const SideBar = () => {
       </Box>
 
       <List>
-        {listItems.map((item) => (
+        {listItems.map((item: sidebarListItem) => (
           <ListItem
             style={{
               height: "74px",
@@ -80,7 +94,7 @@ const SideBar = () => {
             }}
           >
             <img src={item.icon} alt="" />
-            <Typography>{item.label}</Typography>
+            <Link to={item.to}>{item.label}</Link>
           </ListItem>
         ))}
       </List>
