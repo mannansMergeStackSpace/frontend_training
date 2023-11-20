@@ -1,25 +1,9 @@
-import MuiDrawer from "@mui/material/Drawer";
-import { styled } from "@mui/material/styles";
-import { Box, List, ListItem, Typography } from "@mui/material";
+import * as React from "react";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import { AppRoutesEnum } from "../../constants/enums/routes.enum";
 import { Link } from "react-router-dom";
-
-const drawerWidth: number = 305;
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: "border-box",
-  },
-}));
 
 interface sidebarListItem {
   label: string;
@@ -27,7 +11,7 @@ interface sidebarListItem {
   to: string;
 }
 
-const listItems: sidebarListItem[] = [
+const primaryListItems: sidebarListItem[] = [
   {
     label: "Profile",
     icon: "/icons/Profile.svg",
@@ -43,6 +27,9 @@ const listItems: sidebarListItem[] = [
     icon: "/icons/Wallet.svg",
     to: AppRoutesEnum.INVOICES,
   },
+];
+
+const secondaryListItems: sidebarListItem[] = [
   {
     label: "Settings",
     icon: "/icons/Setting.svg",
@@ -60,46 +47,36 @@ const listItems: sidebarListItem[] = [
   },
 ];
 
-const SideBar = () => {
+export const MainList = () => {
   return (
-    <Drawer variant="permanent">
-      <Box
-        position={"relative"}
-        top={"55px"}
-        left={"81px"}
-        display={"flex"}
-        alignItems={"center"}
-        width={"141.11px"}
-        height={"100%"}
-      >
-        <img
-          src="/icons/logo.svg"
-          alt=""
-          height={"46.11px"}
-          width={"46.11px"}
-        />
-        <Typography>Nucleus</Typography>
-      </Box>
-
-      <List>
-        {listItems.map((item: sidebarListItem) => (
-          <ListItem
-            style={{
-              height: "74px",
-              width: "255px",
-              top: "167px",
-              left: "40px",
-              borderRadius: "100px",
-              color: "#D0D2DA",
-            }}
-          >
+    <React.Fragment>
+      {primaryListItems.map((item: sidebarListItem) => (
+        <ListItemButton>
+          <ListItemIcon>
             <img src={item.icon} alt="" />
-            <Link to={item.to}>{item.label}</Link>
-          </ListItem>
-        ))}
-      </List>
-      {/* <Divider /> */}
-    </Drawer>
+          </ListItemIcon>
+          <Link style={{ textDecoration: "none" }} to={item.to}>
+            <ListItemText primary={item.label} />
+          </Link>
+        </ListItemButton>
+      ))}
+    </React.Fragment>
   );
 };
-export default SideBar;
+
+export const SecondaryList = () => {
+  return (
+    <React.Fragment>
+      {secondaryListItems.map((item: sidebarListItem) => (
+        <ListItemButton>
+          <ListItemIcon>
+            <img src={item.icon} alt="" />
+          </ListItemIcon>
+          <Link style={{ textDecoration: "none" }} to={item.to}>
+            <ListItemText primary={item.label} />
+          </Link>
+        </ListItemButton>
+      ))}
+    </React.Fragment>
+  );
+};

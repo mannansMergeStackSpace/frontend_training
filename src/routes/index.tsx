@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import { Routes, Route } from "react-router-dom";
+import Billings from "../components/billing";
 import { AppRoutesEnum } from "../constants/enums/routes.enum";
 
 export interface IRoute {
@@ -17,7 +18,7 @@ const appRoutes: IRoute[] = [
   },
   {
     path: AppRoutesEnum.BILLINGS,
-    element: <div>billings</div>,
+    element: <Billings />,
   },
   {
     path: AppRoutesEnum.INVOICES,
