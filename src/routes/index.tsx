@@ -1,12 +1,14 @@
-import { FC, ReactNode } from "react";
+import { FC, lazy, ReactNode, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import Billings from "../components/billing";
 import { AppRoutesEnum } from "../constants/enums/routes.enum";
 
 export interface IRoute {
   path: string;
   element: ReactNode;
 }
+
+const BillingContainer = lazy(() => import("../containers/billingContainer"));
+
 const appRoutes: IRoute[] = [
   {
     path: "",
@@ -18,7 +20,11 @@ const appRoutes: IRoute[] = [
   },
   {
     path: AppRoutesEnum.BILLINGS,
-    element: <Billings />,
+    element: (
+      <Suspense>
+        <BillingContainer />
+      </Suspense>
+    ),
   },
   {
     path: AppRoutesEnum.INVOICES,

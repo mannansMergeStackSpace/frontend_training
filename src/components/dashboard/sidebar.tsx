@@ -4,6 +4,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { AppRoutesEnum } from "../../constants/enums/routes.enum";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/system";
 
 interface sidebarListItem {
   label: string;
@@ -48,35 +50,85 @@ const secondaryListItems: sidebarListItem[] = [
 ];
 
 export const MainList = () => {
+  const cStyles = listStyles();
+
   return (
     <React.Fragment>
       {primaryListItems.map((item: sidebarListItem) => (
-        <ListItemButton>
-          <ListItemIcon>
-            <img src={item.icon} alt="" />
-          </ListItemIcon>
-          <Link style={{ textDecoration: "none" }} to={item.to}>
-            <ListItemText primary={item.label} />
-          </Link>
-        </ListItemButton>
+        <Link style={{ textDecoration: "none" }} to={item.to}>
+          <ListItemButton className={cStyles.optionContainer}>
+            <Box className={cStyles.optionContentContainer}>
+              <ListItemIcon>
+                <img src={item.icon} alt="" />
+              </ListItemIcon>
+              <ListItemText
+                className={cStyles.optionText}
+                primary={item.label}
+              />
+            </Box>
+          </ListItemButton>
+        </Link>
       ))}
     </React.Fragment>
   );
 };
 
 export const SecondaryList = () => {
+  const cStyles = listStyles();
+
   return (
     <React.Fragment>
       {secondaryListItems.map((item: sidebarListItem) => (
-        <ListItemButton>
-          <ListItemIcon>
-            <img src={item.icon} alt="" />
-          </ListItemIcon>
-          <Link style={{ textDecoration: "none" }} to={item.to}>
-            <ListItemText primary={item.label} />
-          </Link>
-        </ListItemButton>
+        <Link style={{ textDecoration: "none" }} to={item.to}>
+          <ListItemButton
+            className={`${cStyles.optionContainer} ${
+              true && cStyles.activeOptionContainer // active link logic boolean variable
+            }`}
+          >
+            <Box className={cStyles.optionContentContainer}>
+              <ListItemIcon>
+                <img src={item.icon} alt="" />
+              </ListItemIcon>
+              <ListItemText
+                className={cStyles.optionText}
+                primary={item.label}
+              />
+            </Box>
+          </ListItemButton>
+        </Link>
       ))}
     </React.Fragment>
   );
 };
+
+const listStyles = makeStyles({
+  optionContainer: {
+    width: "225px",
+    height: "74px",
+    borderRadius: "100px !important",
+    margin: "5px",
+  },
+  optionContentContainer: {
+    width: "101px",
+    height: "25px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  activeOptionContainer: {
+    background: "#F3F0FF",
+  },
+  activeOptionText: {
+    color: "#551FFF",
+  },
+  optionText: {
+    width: "57px",
+    height: "25px",
+    fontFamily: "Averta-Regular",
+    fontSize: "20px",
+    lineHeight: "23px",
+    letterSpacing: "-0.02em",
+    textAlign: "left",
+    color: "#D0D2DA",
+  },
+});

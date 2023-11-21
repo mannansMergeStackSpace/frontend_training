@@ -3,7 +3,8 @@ import "./App.css";
 import configureStore from "./state";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import Dashboard from "./components/dashboard";
+import DashboardContainer from "./containers/dashboardContainer";
+
 const initialState = (window as any).initialReduxState;
 const store = configureStore(initialState);
 const App: React.FC = () => {
@@ -11,7 +12,7 @@ const App: React.FC = () => {
     <div className="App">
       <BrowserRouter>
         <Provider store={store}>
-          <Dashboard />
+          <DashboardContainer />
         </Provider>
       </BrowserRouter>
     </div>
