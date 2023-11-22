@@ -1,11 +1,11 @@
 import * as React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import { AppRoutesEnum } from "../../constants/enums/routes.enum";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
+import { AppRoutesEnum } from "constants/enums/routes.enum";
 
 interface sidebarListItem {
   label: string;
@@ -61,10 +61,13 @@ export const MainList = () => {
               <ListItemIcon>
                 <img src={item.icon} alt="" />
               </ListItemIcon>
-              <ListItemText
+              <Typography
+                variant="largeRegular"
+                color={"info.dark"}
                 className={cStyles.optionText}
-                primary={item.label}
-              />
+              >
+                {item.label}
+              </Typography>
             </Box>
           </ListItemButton>
         </Link>
@@ -89,10 +92,13 @@ export const SecondaryList = () => {
               <ListItemIcon>
                 <img src={item.icon} alt="" />
               </ListItemIcon>
-              <ListItemText
+              <Typography
+                variant="largeRegular"
+                color={"info.dark"}
                 className={cStyles.optionText}
-                primary={item.label}
-              />
+              >
+                {item.label}
+              </Typography>
             </Box>
           </ListItemButton>
         </Link>
@@ -124,11 +130,7 @@ const listStyles = makeStyles({
   optionText: {
     width: "57px",
     height: "25px",
-    fontFamily: "Averta-Regular",
-    fontSize: "20px",
-    lineHeight: "23px",
     letterSpacing: "-0.02em",
     textAlign: "left",
-    color: "#D0D2DA",
   },
 });

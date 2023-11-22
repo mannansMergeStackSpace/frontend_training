@@ -5,7 +5,10 @@ const InforBar = () => {
   const cStyles = infoBarStyles();
 
   return (
-    <Box className={cStyles.container}>
+    <Box
+      boxShadow={"0px 18px 32px 0px info.dark"}
+      className={cStyles.container}
+    >
       <Box className={cStyles.containerItem}>
         <Box className={cStyles.line}></Box>
         <Box display={"flex"}>
@@ -17,9 +20,21 @@ const InforBar = () => {
           >
             <img className={cStyles.icon} src="/icons/Paper.svg" alt="" />
           </Box>
-          <Box>
-            <Typography className={cStyles.textTypography}>Projects</Typography>
-            <Typography className={cStyles.numberTypography}>3</Typography>
+          <Box display={"flex"} flexDirection="column">
+            <Typography
+              variant="normalRegular"
+              color={"info.light"}
+              className={cStyles.textTypography}
+            >
+              Projects
+            </Typography>
+            <Typography
+              variant="mediumRegular"
+              color={"info.main"}
+              className={cStyles.numberTypography}
+            >
+              3
+            </Typography>
           </Box>
         </Box>
       </Box>
@@ -29,9 +44,21 @@ const InforBar = () => {
           <Box sx={{ background: "#EDE8FF" }} className={cStyles.iconContainer}>
             <img src="/icons/Swap.svg" alt="" />
           </Box>
-          <Box>
-            <Typography className={cStyles.textTypography}>Requests</Typography>
-            <Typography className={cStyles.numberTypography}>3</Typography>
+          <Box display={"flex"} flexDirection="column">
+            <Typography
+              variant="normalRegular"
+              color={"info.light"}
+              className={cStyles.textTypography}
+            >
+              Requests
+            </Typography>
+            <Typography
+              color={"info.main"}
+              className={cStyles.numberTypography}
+              variant={"mediumRegular"}
+            >
+              3
+            </Typography>
           </Box>
         </Box>
       </Box>
@@ -46,9 +73,21 @@ const InforBar = () => {
           >
             <img src="/icons/Document.svg" alt="" />
           </Box>
-          <Box>
-            <Typography className={cStyles.textTypography}>Users</Typography>
-            <Typography className={cStyles.numberTypography}>3</Typography>
+          <Box display={"flex"} flexDirection="column">
+            <Typography
+              variant="normalRegular"
+              color={"info.light"}
+              className={cStyles.textTypography}
+            >
+              Users
+            </Typography>
+            <Typography
+              variant="mediumRegular"
+              color={"info.main"}
+              className={cStyles.numberTypography}
+            >
+              3
+            </Typography>
           </Box>
         </Box>
       </Box>
@@ -67,7 +106,6 @@ const infoBarStyles = makeStyles({
     // left: "30px",
     borderRadius: "20px",
     background: "#FFFFFF",
-    boxShadow: "0px 18px 32px 0px #D0D2DA26",
   },
   containerItem: {
     position: "relative",

@@ -1,7 +1,7 @@
+import Dashboard from "components/dashboard";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import Dashboard from "../components/dashboard";
-import { fetchUser } from "../state/ducks/user/actions";
+import { fetchUser } from "state/ducks/user/actions";
 
 const DashboardContainer = () => {
   const dispatch = useDispatch();

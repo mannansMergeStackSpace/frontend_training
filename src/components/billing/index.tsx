@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
+import Plan from "components/common/plan";
 import { FC } from "react";
-import { IUserState } from "../../state/ducks/user/types";
-import Plan from "../common/plan";
+import { IUserState } from "state/ducks/user/types";
 import Activity from "./activity";
 import BillingChart from "./chart";
 import InforBar from "./infoBar";

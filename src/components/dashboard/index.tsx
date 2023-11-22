@@ -1,4 +1,4 @@
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -6,12 +6,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Container from "@mui/material/Container";
-import AppRoutes from "../../routes";
 import { List } from "@mui/material";
-import { MainList, SecondaryList } from "./sidebar";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { FC, useEffect } from "react";
-import { IDispatchToProps } from "../../state/ducks/user/types";
+import { IDispatchToProps } from "state/ducks/user/types";
+import { MainList, SecondaryList } from "./sidebar";
+import AppRoutes from "routes";
 
 const drawerWidth: number = 305;
 
@@ -66,7 +66,6 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
 
 const Dashboard: FC<IDispatchToProps> = ({ fetchUser }: IDispatchToProps) => {
   // kind of initialling app that's why fetching here!
@@ -75,153 +74,140 @@ const Dashboard: FC<IDispatchToProps> = ({ fetchUser }: IDispatchToProps) => {
   }, [fetchUser]);
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar position="absolute" open={true}>
-          <Toolbar
-            sx={{
-              pr: "24px", // keep right padding when drawer closed
-            }}
-          >
-            <Box display={"flex"} flexDirection={"column"}>
-              <Typography
-                component="h1"
-                variant="h6"
-                sx={{
-                  width: "202px",
-                  height: "53px",
-
-                  fontFamily: "Averta-Semibold",
-                  fontSize: "40px",
-                  lineHeight: "47px",
-                  letterSpacing: "-0.02em",
-                  textAlign: "left",
-                  color: "#15192C",
-                }}
-              >
-                Dashboard
-              </Typography>
-              <Typography
-                component="h1"
-                variant="h6"
-                sx={{
-                  width: "399px",
-                  height: "22px",
-                  fontFamily: "Averta-Regular",
-                  fontSize: "18px",
-                  lineHeight: "21px",
-                  letterSpacing: "0em",
-                  textAlign: "left",
-                  color: "#92959E",
-                }}
-              >
-                Information about your current plan and usages
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                position: "absolute",
-                float: "right",
-                width: "399px",
-                height: "77px",
-                top: "40px",
-                display: "flex",
-                right: 0,
-                backgrounColor: "#F4F5F7",
-              }}
-            >
-              <img
-                style={{
-                  width: "24px",
-                  height: "24px",
-                }}
-                src="/icons/Calendar.svg"
-                alt=""
-              />
-              <Typography
-                sx={{
-                  width: "208px",
-                  height: "24px",
-                  fontFamily: "Averta-Semibold",
-                  fontSize: "18px",
-                  lineHeight: "21px",
-                  letterSpacing: "0em",
-                  textAlign: "left",
-                  right: 0,
-                  color: "#15192C",
-                  marginLeft: "10px",
-                }}
-              >
-                Wednesday, 17 May 2021
-              </Typography>
-              <img
-                style={{
-                  width: "24px",
-                  height: "24px",
-                }}
-                src="/icons/chevron-down1.png"
-                alt=""
-              />
-            </Box>
-          </Toolbar>
-        </AppBar>
-        <Drawer variant="permanent" open={true}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              px: [1],
-            }}
-          >
-            <Box
-              top={"55px"}
-              position="relative"
-              display={"flex"}
-              justifyContent="center"
-              alignItems={"center"}
-            >
-              <img src="/icons/logo.svg" alt="" />
-              <Typography color={"#551FFF"}>Nucleus</Typography>
-            </Box>
-          </Toolbar>
-          <List component="nav" sx={{ top: "67px" }}>
-            <Box
-              display={"flex"}
-              flexDirection="column"
-              justifyContent="center"
-              alignItems={"center"}
-            >
-              <MainList />
-            </Box>
-            <Divider sx={{ my: 1 }} />
-            <Box
-              display={"flex"}
-              flexDirection="column"
-              justifyContent="center"
-              alignItems={"center"}
-            >
-              <SecondaryList />
-            </Box>
-          </List>
-        </Drawer>
-        <Box
-          component="main"
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar position="absolute" open={true}>
+        <Toolbar
           sx={{
-            backgroundColor: "#EAEAEA",
-            flexGrow: 1,
-            height: "100vh",
-            overflow: "auto",
+            pr: "24px", // keep right padding when drawer closed
           }}
         >
-          <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <AppRoutes />
-          </Container>
-        </Box>
+          <Box display={"flex"} flexDirection={"column"}>
+            <Typography
+              variant="h3"
+              sx={{
+                width: "202px",
+                height: "53px",
+                letterSpacing: "-0.02em",
+                textAlign: "left",
+              }}
+              color="info.main"
+            >
+              Dashboard
+            </Typography>
+            <Typography
+              variant="mediumRegular"
+              sx={{
+                width: "399px",
+                height: "22px",
+                letterSpacing: "0em",
+                textAlign: "left",
+              }}
+              color="info.light"
+            >
+              Information about your current plan and usages
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              float: "right",
+              width: "399px",
+              height: "77px",
+              top: "40px",
+              display: "flex",
+              right: 0,
+              backgrounColor: "#F4F5F7",
+            }}
+          >
+            <img
+              style={{
+                width: "24px",
+                height: "24px",
+              }}
+              src="/icons/Calendar.svg"
+              alt=""
+            />
+            <Typography
+              variant="mediumRegular"
+              sx={{
+                width: "208px",
+                height: "24px",
+                letterSpacing: "0em",
+                textAlign: "left",
+                right: 0,
+                marginLeft: "10px",
+              }}
+              color={"info.main"}
+            >
+              Wednesday, 17 May 2021
+            </Typography>
+            <img
+              style={{
+                width: "24px",
+                height: "24px",
+              }}
+              src="/icons/chevron-down1.png"
+              alt=""
+            />
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Drawer variant="permanent" open={true}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            px: [1],
+          }}
+        >
+          <Box
+            top={"55px"}
+            position="relative"
+            display={"flex"}
+            justifyContent="center"
+            alignItems={"center"}
+          >
+            <img src="/icons/logo.svg" alt="" />
+            <Typography color={"#551FFF"}>Nucleus</Typography>
+          </Box>
+        </Toolbar>
+        <List component="nav" sx={{ top: "67px" }}>
+          <Box
+            display={"flex"}
+            flexDirection="column"
+            justifyContent="center"
+            alignItems={"center"}
+          >
+            <MainList />
+          </Box>
+          <Divider sx={{ my: 1 }} />
+          <Box
+            display={"flex"}
+            flexDirection="column"
+            justifyContent="center"
+            alignItems={"center"}
+          >
+            <SecondaryList />
+          </Box>
+        </List>
+      </Drawer>
+      <Box
+        component="main"
+        sx={{
+          backgroundColor: "#EAEAEA",
+          flexGrow: 1,
+          height: "100vh",
+          overflow: "auto",
+        }}
+      >
+        <Toolbar />
+        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <AppRoutes />
+        </Container>
       </Box>
-    </ThemeProvider>
+    </Box>
   );
 };
 

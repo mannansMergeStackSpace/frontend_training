@@ -7,7 +7,9 @@ const Activity = () => {
   return (
     <Box className={cStyles.activityContainer}>
       <Box display={"flex"}>
-        <Typography className={cStyles.activityTypography}>Activity</Typography>
+        <Typography color={"info.main"} className={cStyles.activityTypography}>
+          Activity
+        </Typography>
         <img
           className={cStyles.activityFilterIcon}
           src="/icons/Filter.svg"
@@ -58,7 +60,6 @@ const activityStyles = makeStyles({
     lineHeight: "28px",
     letterSpacing: "-0.02em",
     textAlign: "left",
-    color: "#15192C",
   },
   activityFilterIcon: {
     position: "relative",

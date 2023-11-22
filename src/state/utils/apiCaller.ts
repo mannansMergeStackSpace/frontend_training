@@ -1,4 +1,4 @@
-import { requestMethod } from "../ducks";
+import { requestMethod } from "state/ducks";
 
 export default function apiCaller<T>(
   method: requestMethod,

@@ -8,10 +8,18 @@ const Plan = () => {
   return (
     <Box className={cStyles.planContainer}>
       <Box className={cStyles.chartHeadline}>
-        <Typography className={cStyles.planInfoHeading}>
+        <Typography
+          variant="h5"
+          color={"info.main"}
+          className={cStyles.planInfoHeading}
+        >
           Current Plan
         </Typography>
-        <Typography className={cStyles.planInfoSubHeading}>
+        <Typography
+          variant={"smallRegular"}
+          color={"info.light"}
+          className={cStyles.planInfoSubHeading}
+        >
           Information and usages of your current plan
         </Typography>
         <Box className={cStyles.planInfoContainer}>
@@ -19,8 +27,20 @@ const Plan = () => {
             <img className={cStyles.planIcon} src="/icons/2User.svg" alt="" />
           </Box>
           <Box className={cStyles.planNamePriceContainer}>
-            <Typography className={cStyles.planName}>Teams Plan</Typography>
-            <Typography className={cStyles.planPrice}>$99/mo</Typography>
+            <Typography
+              variant={"smallRegular"}
+              color={"info.main"}
+              className={cStyles.planName}
+            >
+              Teams Plan
+            </Typography>
+            <Typography
+              variant={"mediumBold"}
+              color={"info.main"}
+              className={cStyles.planPrice}
+            >
+              $99/mo
+            </Typography>
           </Box>
           <Box className={cStyles.planArrowIconContainer}>
             <img
@@ -32,10 +52,18 @@ const Plan = () => {
         </Box>
         <Box className={cStyles.progressBarCointainer}>
           <Box className={cStyles.progressBarTypographyContainer}>
-            <Typography className={cStyles.projectBarTypography}>
+            <Typography
+              color={"info.main"}
+              className={cStyles.projectBarTypography}
+              variant="smallRegular"
+            >
               Projects
             </Typography>
-            <Typography className={cStyles.projectBarTypography}>
+            <Typography
+              variant="smallRegular"
+              color={"info.main"}
+              className={cStyles.projectBarTypography}
+            >
               1/3
             </Typography>
           </Box>
@@ -48,10 +76,18 @@ const Plan = () => {
 
         <Box className={cStyles.progressBarCointainer}>
           <Box className={cStyles.progressBarTypographyContainer}>
-            <Typography className={cStyles.projectBarTypography}>
+            <Typography
+              color={"info.main"}
+              className={cStyles.projectBarTypography}
+              variant="smallRegular"
+            >
               Users
             </Typography>
-            <Typography className={cStyles.projectBarTypography}>
+            <Typography
+              color={"info.main"}
+              className={cStyles.projectBarTypography}
+              variant="smallRegular"
+            >
               1/3
             </Typography>
           </Box>
@@ -64,10 +100,18 @@ const Plan = () => {
 
         <Box className={cStyles.progressBarCointainer}>
           <Box className={cStyles.progressBarTypographyContainer}>
-            <Typography className={cStyles.projectBarTypography}>
+            <Typography
+              color={"info.main"}
+              className={cStyles.projectBarTypography}
+              variant="smallRegular"
+            >
               Requests
             </Typography>
-            <Typography className={cStyles.projectBarTypography}>
+            <Typography
+              color={"info.main"}
+              className={cStyles.projectBarTypography}
+              variant="smallRegular"
+            >
               1/3
             </Typography>
           </Box>
@@ -112,15 +156,10 @@ const planStyles = makeStyles({
     position: "relative",
     width: "300px",
     height: "32px",
-    fontSize: "24px",
-    lineHeight: "28px",
     letterSpacing: "-0.02em",
   },
   planInfoSubHeading: {
-    fontSize: "14px !important",
-    lineHeight: "16px !important",
     letterSpacing: "0em !important",
-    color: "#92959E",
   },
   planInfoContainer: {
     position: "relative",
@@ -150,24 +189,21 @@ const planStyles = makeStyles({
     position: "relative",
     left: "14px",
     paddingTop: "10px",
+    display: "flex",
+    flexDirection: "column",
   },
 
   planName: {
     width: "90px",
     height: "17px",
-    fontSize: "14px",
-    lineHeight: "16px",
     letterSpacing: "-0.02em",
     textAlign: "left",
   },
   planPrice: {
     width: "63px",
     height: "24px",
-    fontSize: "18px",
-    lineHeight: "21px",
     letterSpacing: "-0.02em",
     textAlign: "left",
-    color: "#15192C",
   },
   planArrowIconContainer: {
     position: "absolute",
@@ -200,8 +236,6 @@ const planStyles = makeStyles({
     marginBottom: "5px",
   },
   projectBarTypography: {
-    fontSize: "14px",
-    lineHeight: "16px",
     letterSpacing: "-0.02em",
     textAlign: "left",
   },

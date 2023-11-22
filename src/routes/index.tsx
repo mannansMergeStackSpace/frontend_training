@@ -1,6 +1,6 @@
+import { AppRoutesEnum } from "constants/enums/routes.enum";
 import { FC, lazy, ReactNode, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { AppRoutesEnum } from "../constants/enums/routes.enum";
 
 export interface IRoute {
   path: string;

@@ -1,7 +1,7 @@
+import Billings from "components/billing";
 import { useSelector } from "react-redux";
-import Billings from "../components/billing";
-import { IApplicationState } from "../state/ducks";
-import { IUserState } from "../state/ducks/user/types";
+import { IApplicationState } from "state/ducks";
+import { IUserState } from "state/ducks/user/types";
 
 const BillingContainer = () => {
   const stateToProps: IUserState = useSelector(
