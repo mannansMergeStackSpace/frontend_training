@@ -1,16 +1,17 @@
 import * as React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import { AppRoutesEnum } from "constants/enums/routes.enum";
+import { useMemo } from "react";
 
 interface sidebarListItem {
   label: string;
   icon: string;
   to: string;
+  isActiveRoute?: boolean;
 }
 
 const primaryListItems: sidebarListItem[] = [
@@ -29,9 +30,6 @@ const primaryListItems: sidebarListItem[] = [
     icon: "/icons/Wallet.svg",
     to: AppRoutesEnum.INVOICES,
   },
-];
-
-const secondaryListItems: sidebarListItem[] = [
   {
     label: "Settings",
     icon: "/icons/Setting.svg",
@@ -49,88 +47,91 @@ const secondaryListItems: sidebarListItem[] = [
   },
 ];
 
+const halfItemsCount = primaryListItems.length / 2;
+
 export const MainList = () => {
-  const cStyles = listStyles();
+  const styles = listStyles();
+  const location = useLocation();
+
+  const listItems: sidebarListItem[] = useMemo(() => {
+    return primaryListItems.map((item: sidebarListItem) => {
+      return {
+        ...item,
+        isActiveRoute: location.pathname === item.to,
+      };
+    });
+  }, [location.pathname]);
 
   return (
     <React.Fragment>
-      {primaryListItems.map((item: sidebarListItem) => (
-        <Link style={{ textDecoration: "none" }} to={item.to}>
-          <ListItemButton className={cStyles.optionContainer}>
-            <Box className={cStyles.optionContentContainer}>
-              <ListItemIcon>
-                <img src={item.icon} alt="" />
-              </ListItemIcon>
-              <Typography
-                variant="largeRegular"
-                color={"info.dark"}
-                className={cStyles.optionText}
+      {listItems?.map((item: sidebarListItem, index: number) => {
+        return (
+          <>
+            {index === halfItemsCount && (
+              <Box className={styles.listDividerContainer}>
+                <Divider />
+              </Box>
+            )}
+            <Link to={item.to}>
+              <ListItemButton
+                className={`${styles.optionContainer} ${
+                  item.isActiveRoute && styles.activeOptionContainer
+                }`}
               >
-                {item.label}
-              </Typography>
-            </Box>
-          </ListItemButton>
-        </Link>
-      ))}
-    </React.Fragment>
-  );
-};
-
-export const SecondaryList = () => {
-  const cStyles = listStyles();
-
-  return (
-    <React.Fragment>
-      {secondaryListItems.map((item: sidebarListItem) => (
-        <Link style={{ textDecoration: "none" }} to={item.to}>
-          <ListItemButton
-            className={`${cStyles.optionContainer} ${
-              true && cStyles.activeOptionContainer // active link logic boolean variable
-            }`}
-          >
-            <Box className={cStyles.optionContentContainer}>
-              <ListItemIcon>
-                <img src={item.icon} alt="" />
-              </ListItemIcon>
-              <Typography
-                variant="largeRegular"
-                color={"info.dark"}
-                className={cStyles.optionText}
-              >
-                {item.label}
-              </Typography>
-            </Box>
-          </ListItemButton>
-        </Link>
-      ))}
+                <Box className={styles.optionContentContainer}>
+                  <img src={item.icon} alt="" />
+                  <Typography
+                    variant="largeRegular"
+                    color={item.isActiveRoute ? "primary.light" : "info.dark"}
+                    className={styles.optionText}
+                  >
+                    {item.label}
+                  </Typography>
+                </Box>
+              </ListItemButton>
+            </Link>
+          </>
+        );
+      })}
     </React.Fragment>
   );
 };
 
 const listStyles = makeStyles({
   optionContainer: {
+    position: "relative",
     width: "225px",
     height: "74px",
     borderRadius: "100px !important",
-    margin: "5px",
+    marginTop: "20px !important",
   },
   optionContentContainer: {
+    position: "absolute",
     width: "101px",
     height: "25px",
     display: "flex",
+    top: "25px",
+    left: "35px",
     justifyContent: "center",
-    alignItems: "center",
+    alighItems: "center",
   },
   activeOptionContainer: {
-    background: "#F3F0FF",
+    backgroundColor: "#F3F0FF !important",
   },
   activeOptionText: {
     color: "#551FFF",
   },
   optionText: {
+    position: "relative",
     width: "57px",
     height: "25px",
     letterSpacing: "-0.02em",
-    textAlign: "left",
+    left: "20px",
+  },
+  listDividerContainer: {
+    position: "relative",
+    left: "15px",
+    width: "198px",
+    marginTop: "20px",
   },
 });
