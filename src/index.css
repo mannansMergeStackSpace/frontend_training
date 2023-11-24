@@ -6,3 +6,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@font-face {
+  font-family: "Averta-bold";
+  src: local("Averta-bold"),
+    url("../public/fonts/AvertaDemoPE-ExtraboldItalic.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Averta-regular";
+  src: local("Averta-regular"),
+    url("../public/fonts/AvertaDemoPE-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AvertaStd-Bold";
+  src: local("AvertaStd-Bold"),
+    url("../public/fonts/AvertaStd-Bold.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}

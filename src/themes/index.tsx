@@ -78,7 +78,7 @@ const CustomThemeProvider: FC<AllProps> = ({ mode, children }: AllProps) => {
           }),
     },
     typography: {
-      fontFamily: "Inter",
+      fontFamily: "Averta-regular",
       h1: {
         fontSize: "56px",
         lineHeight: "61.6px",

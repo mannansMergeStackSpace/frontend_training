@@ -3,15 +3,19 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 
 const Activity = () => {
-  const cStyles = activityStyles();
+  const styles = activityStyles();
   return (
-    <Box className={cStyles.activityContainer}>
-      <Box display={"flex"}>
-        <Typography color={"info.main"} className={cStyles.activityTypography}>
+    <Box className={styles.activityContainer}>
+      <Box className={styles.activityHeaderContainer}>
+        <Typography
+          variant="h5"
+          color={"info.main"}
+          className={styles.activityTypography}
+        >
           Activity
         </Typography>
         <img
-          className={cStyles.activityFilterIcon}
+          className={styles.activityFilterIcon}
           src="/icons/Filter.svg"
           alt=""
         />
@@ -22,13 +26,13 @@ const Activity = () => {
           .map(() => {
             return (
               <>
-                <Box className={cStyles.activityItemContainer}></Box>
+                <Box className={styles.activityItemContainer}></Box>
                 <Box
                   display="flex"
                   justifyContent={"center"}
                   alignItems={"center"}
                 >
-                  <Divider className={cStyles.activityDivider} />
+                  <Divider className={styles.activityDivider} />
                 </Box>
               </>
             );
@@ -45,28 +49,29 @@ const activityStyles = makeStyles({
     position: "relative",
     width: "507px",
     height: "812px",
-    top: "50px",
-    left: "58px",
     background: "#FFFFFF",
+    top: "50px",
+    left: "60px",
+  },
+  activityHeaderContainer: {
+    position: "relative",
+    display: "flex",
+    top: "35px",
+    left: "40px",
   },
   activityTypography: {
     width: "83px",
     height: "32px",
-    top: "35px",
-    left: "40px",
+
     position: "relative",
-    fontFamily: "Averta-Semibold",
-    fontSize: "24px",
-    lineHeight: "28px",
     letterSpacing: "-0.02em",
     textAlign: "left",
   },
   activityFilterIcon: {
-    position: "relative",
+    position: "absolute",
     width: "24px",
     height: "24px",
-    top: "35px",
-    left: "280px",
+    right: 90,
     padding: "3px, 0px, 2px, 0px",
   },
   activityItemContainer: {
@@ -74,7 +79,7 @@ const activityStyles = makeStyles({
     height: "150px",
   },
   activityDivider: {
-    width: "300px",
+    width: "427px",
     border: "1px solid #ECECEE",
   },
 });

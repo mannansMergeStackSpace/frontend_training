@@ -57,7 +57,7 @@ const InforBar = () => {
               className={cStyles.numberTypography}
               variant={"mediumRegular"}
             >
-              3
+              3456
             </Typography>
           </Box>
         </Box>
@@ -100,7 +100,7 @@ const infoBarStyles = makeStyles({
   container: {
     position: "relative",
     display: "flex",
-    width: "750px",
+    width: "928px",
     height: "150px",
     top: "50px",
     // left: "30px",
@@ -110,14 +110,14 @@ const infoBarStyles = makeStyles({
   containerItem: {
     position: "relative",
     dispay: "flex !important",
-    width: "186px",
+    width: "210px",
     height: "82px",
-    top: "34px",
+    top: "40px",
     left: "39px",
     borderRadius: "16px",
   },
   line: {
-    position: "relative",
+    position: "absolute",
     width: "82px",
     top: "34px",
     left: "125px",
@@ -129,7 +129,7 @@ const infoBarStyles = makeStyles({
     width: "63px",
     height: "63px",
     top: "211px",
-    left: "39px",
+    left: "50px",
     borderRadius: "16px",
     opacity: "0.65px",
     justifyContent: "center",
@@ -149,8 +149,6 @@ const infoBarStyles = makeStyles({
     left: "6px",
     position: "relative",
     fontFamily: "AvertaStd-Bold",
-    fontSize: "16px",
-    lineHeight: "19px",
     letterSpacing: "0em",
     textAlign: "left",
   },
@@ -162,8 +160,6 @@ const infoBarStyles = makeStyles({
     left: "6px",
 
     fontFamily: "Averta-Regular",
-    fontSize: "20px",
-    lineHeight: "23px",
     letterSpacing: "0em",
     textAlign: "left",
   },

@@ -34,15 +34,14 @@ const TopBar = () => {
     <AppBar open={true}>
       <Toolbar
         sx={{
-          margin: "35px",
-          // pr: "60px", // keep right padding when drawer closed
+          mt: "35px",
+          ml: "35px",
         }}
       >
-        <Box display={"flex"} flexDirection={"column"}>
+        <Box>
           <Typography
             variant="h3"
             sx={{
-              width: "202px",
               height: "53px",
               letterSpacing: "-0.02em",
               textAlign: "left",
@@ -54,8 +53,6 @@ const TopBar = () => {
           <Typography
             variant="mediumRegular"
             sx={{
-              width: "450px",
-              height: "22px",
               letterSpacing: "0em",
               textAlign: "left",
             }}
@@ -67,13 +64,14 @@ const TopBar = () => {
         <Box
           sx={{
             position: "absolute",
-            float: "right",
             width: "399px",
-            height: "77px",
-            top: "40px",
+            height: "61px",
             display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             right: 60,
-            backgrounColor: "#F4F5F7",
+            backgroundColor: "#F4F5F7",
+            borderRadius: "12px",
           }}
         >
           <img
@@ -85,14 +83,11 @@ const TopBar = () => {
             alt=""
           />
           <Typography
-            variant="mediumRegular"
+            variant="mediumBold"
             sx={{
               width: "280px",
               height: "24px",
               letterSpacing: "0em",
-              textAlign: "left",
-              right: 0,
-              marginLeft: "10px",
             }}
             color={"info.main"}
           >

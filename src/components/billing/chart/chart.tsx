@@ -1,39 +1,78 @@
 import React from "react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { Line } from "react-chartjs-2";
 
-const LineChart = () => {
-  const data = {
-    labels: ["2016", "2017", "2018", "2019", "2020"],
-    datasets: [
-      {
-        label: "No. of downloads (K)",
-        data: [2, 6, 9, 7, 11],
-        borderColor: "#C8ECCC",
-        backgroundColor: "#F0FAF1",
-        pointBorderColor: "#AAA",
-        pointBackgroundColor: "#FEF1F1",
-      },
-    ],
-  };
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-  const options = {
+export const options = {
+  responsive: true,
+
+  plugins: {
+    legend: {
+      position: "top" as const,
+      display: false,
+    },
     title: {
-      display: true,
-      text: "Number of downloads of our app",
+      display: false,
+      text: "Chart.js Line Chart",
     },
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            min: 0,
-            max: 20,
-            stepSize: 3,
-          },
-        },
-      ],
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
     },
-  };
-  return <Line data={data} options={options as any} />;
+    y: {
+      grid: {
+        display: false,
+      },
+    },
+  },
 };
+
+const labels = ["January", "February", "March", "April", "May", "June"];
+
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: Array(10000)
+        .fill(0)
+        .map(() => Math.random() * 10),
+      borderColor: "#7549FF",
+      backgroundColor: "white",
+      showLine: true,
+      fill: {
+        target: "origin",
+        below: "#7549FF",
+      },
+      tension: 0.5,
+      borderJoinStyle: "round",
+    },
+  ],
+};
+
+function LineChart() {
+  return <Line options={options} data={data as any} />;
+}
 
 export default LineChart;

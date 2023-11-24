@@ -104,6 +104,7 @@ const listStyles = makeStyles({
     height: "74px",
     borderRadius: "100px !important",
     marginTop: "20px !important",
+    left: "30px",
   },
   optionContentContainer: {
     position: "absolute",
@@ -130,7 +131,7 @@ const listStyles = makeStyles({
   },
   listDividerContainer: {
     position: "relative",
-    left: "15px",
+    left: "45px",
     width: "198px",
     marginTop: "20px",
   },

@@ -88,12 +88,7 @@ const Dashboard: FC<IDispatchToProps> = ({ fetchUser }: IDispatchToProps) => {
           </Box>
         </Toolbar>
 
-        <Box
-          position={"relative"}
-          flexDirection="column"
-          left={"30px"}
-          top={"65px"}
-        >
+        <Box position={"relative"} flexDirection="column" top={"65px"}>
           <MainList />
         </Box>
       </Drawer>
@@ -106,7 +101,7 @@ const Dashboard: FC<IDispatchToProps> = ({ fetchUser }: IDispatchToProps) => {
           overflow: "auto",
         }}
       >
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+        <Container maxWidth="xl" sx={{ mt: 4, mb: 4, ml: 4, mr: 4 }}>
           <AppRoutes />
         </Container>
       </Box>

@@ -9,7 +9,7 @@ import InforBar from "./infoBar";
 const Billings: FC<IUserState> = ({ data, errors, loading }: IUserState) => {
   return (
     <Box display={"flex"} position={"relative"} top={70}>
-      <Box position={"relative"}>
+      <Box>
         <InforBar />
         <BillingChart />
         <Plan />

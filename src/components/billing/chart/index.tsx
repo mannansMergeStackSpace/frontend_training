@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
+import LineChart from "./chart";
 
 const BillingChart = () => {
   const cStyles = chartStyles();
@@ -16,8 +17,14 @@ const BillingChart = () => {
           alt=""
         />
       </Box>
-      <Box height={500} width={500}>
-        {/* <LineChart /> */}
+      <Box
+        maxHeight={"340px"}
+        maxWidth={"759px"}
+        top={60}
+        left={50}
+        position={"relative"}
+      >
+        <LineChart />
       </Box>
     </Box>
   );
@@ -27,7 +34,7 @@ export default BillingChart;
 const chartStyles = makeStyles({
   chartContainer: {
     position: "relative",
-    width: "750px",
+    width: "928px",
     height: "450px",
     top: "80px",
     borderRadius: "20px",
