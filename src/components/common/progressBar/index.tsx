@@ -5,18 +5,9 @@ interface ProgressBarProps {
   value: number;
   variant?: "determinate" | "buffer";
   sx?: CSSProperties;
-  color?:
-    | "primary"
-    | "secondary"
-    | "error"
-    | "info"
-    | "success"
-    | "warning"
-    | "inherit"
-    | undefined;
 }
 
 const ProgressBar: FC<ProgressBarProps> = (props) => {
-  return <LinearProgress {...props} />;
+  return <LinearProgress {...props} color={"inherit"} />;
 };
 export default ProgressBar;

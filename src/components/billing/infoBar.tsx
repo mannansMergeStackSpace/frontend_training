@@ -1,8 +1,23 @@
 import { Box, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { FC, useMemo } from "react";
+import { User } from "state/ducks/user/types";
+import InfoBarStyles from "./styles/infobar.styles";
 
-const InforBar = () => {
-  const cStyles = infoBarStyles();
+interface AllTypes {
+  user: User;
+}
+
+const InforBar: FC<AllTypes> = ({ user }: AllTypes) => {
+  const cStyles = InfoBarStyles();
+
+  const { totalProjects, totalRequests, totalUsers } = useMemo(
+    () => ({
+      totalRequests: user?.requests?.length || 0,
+      totalUsers: user?.contributors?.length || 0,
+      totalProjects: user?.projects?.length || 0,
+    }),
+    [user]
+  );
 
   return (
     <Box
@@ -13,7 +28,7 @@ const InforBar = () => {
         <Box className={cStyles.line}></Box>
         <Box display={"flex"}>
           <Box
-            sx={{
+            style={{
               background: "#FFF2E9",
             }}
             className={cStyles.iconContainer}
@@ -33,7 +48,7 @@ const InforBar = () => {
               color={"info.main"}
               className={cStyles.numberTypography}
             >
-              3
+              {totalProjects}
             </Typography>
           </Box>
         </Box>
@@ -41,7 +56,10 @@ const InforBar = () => {
       <Box className={cStyles.containerItem}>
         <Box className={cStyles.line}></Box>
         <Box display={"flex"}>
-          <Box sx={{ background: "#EDE8FF" }} className={cStyles.iconContainer}>
+          <Box
+            style={{ background: "#EDE8FF" }}
+            className={cStyles.iconContainer}
+          >
             <img src="/icons/Swap.svg" alt="" />
           </Box>
           <Box display={"flex"} flexDirection="column">
@@ -57,7 +75,7 @@ const InforBar = () => {
               className={cStyles.numberTypography}
               variant={"mediumRegular"}
             >
-              3456
+              {totalRequests}
             </Typography>
           </Box>
         </Box>
@@ -66,7 +84,7 @@ const InforBar = () => {
         <Box className={cStyles.line}></Box>
         <Box display={"flex"}>
           <Box
-            sx={{
+            style={{
               background: "#EAF9FF",
             }}
             className={cStyles.iconContainer}
@@ -86,7 +104,7 @@ const InforBar = () => {
               color={"info.main"}
               className={cStyles.numberTypography}
             >
-              3
+              {totalUsers}
             </Typography>
           </Box>
         </Box>
@@ -95,72 +113,3 @@ const InforBar = () => {
   );
 };
 export default InforBar;
-
-const infoBarStyles = makeStyles({
-  container: {
-    position: "relative",
-    display: "flex",
-    width: "928px",
-    height: "150px",
-    top: "50px",
-    // left: "30px",
-    borderRadius: "20px",
-    background: "#FFFFFF",
-  },
-  containerItem: {
-    position: "relative",
-    dispay: "flex !important",
-    width: "210px",
-    height: "82px",
-    top: "40px",
-    left: "39px",
-    borderRadius: "16px",
-  },
-  line: {
-    position: "absolute",
-    width: "82px",
-    top: "34px",
-    left: "125px",
-    transform: "rotate(-90deg)",
-    background: "#ECECEE",
-    border: "1px solid #ECECEE",
-  },
-  iconContainer: {
-    width: "63px",
-    height: "63px",
-    top: "211px",
-    left: "50px",
-    borderRadius: "16px",
-    opacity: "0.65px",
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
-  },
-  icon: {
-    position: "relative",
-    width: "24px",
-    height: "24px",
-    top: "2px",
-    left: "3.5px",
-  },
-  textTypography: {
-    width: "61px",
-    height: "20px",
-    left: "6px",
-    position: "relative",
-    fontFamily: "AvertaStd-Bold",
-    letterSpacing: "0em",
-    textAlign: "left",
-  },
-  numberTypography: {
-    position: "relative",
-    width: "11px",
-    height: "25px",
-    top: "5px",
-    left: "6px",
-
-    fontFamily: "Averta-Regular",
-    letterSpacing: "0em",
-    textAlign: "left",
-  },
-});

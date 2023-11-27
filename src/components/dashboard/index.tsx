@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 
 import { FC, useEffect } from "react";
 import { IDispatchToProps } from "state/ducks/user/types";
-import { MainList } from "./sidebar";
+import Sidebar from "./sidebar";
 import AppRoutes from "routes";
 import TopBar from "./topbar";
 
@@ -49,16 +49,15 @@ const Dashboard: FC<IDispatchToProps> = ({ fetchUser }: IDispatchToProps) => {
   }, [fetchUser]);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box style={{ display: "flex" }}>
       <CssBaseline />
       <TopBar />
       <Drawer variant="permanent" open={true}>
         <Toolbar
-          sx={{
+          style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            px: [1],
             position: "relative",
           }}
         >
@@ -89,19 +88,19 @@ const Dashboard: FC<IDispatchToProps> = ({ fetchUser }: IDispatchToProps) => {
         </Toolbar>
 
         <Box position={"relative"} flexDirection="column" top={"65px"}>
-          <MainList />
+          <Sidebar />
         </Box>
       </Drawer>
       <Box
         component="main"
-        sx={{
+        style={{
           backgroundColor: "#F8F9FC",
           flexGrow: 1,
           height: "100vh",
           overflow: "auto",
         }}
       >
-        <Container maxWidth="xl" sx={{ mt: 4, mb: 4, ml: 4, mr: 4 }}>
+        <Container maxWidth="xl" style={{ margin: 40 }}>
           <AppRoutes />
         </Container>
       </Box>

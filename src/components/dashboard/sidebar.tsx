@@ -1,11 +1,11 @@
 import * as React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import { Link, useLocation } from "react-router-dom";
-import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { Divider, Typography } from "@mui/material";
 import { AppRoutesEnum } from "constants/enums/routes.enum";
 import { useMemo } from "react";
+import SidebarStyles from "./styles/sidebar.styles";
 
 interface sidebarListItem {
   label: string;
@@ -49,8 +49,8 @@ const primaryListItems: sidebarListItem[] = [
 
 const halfItemsCount = primaryListItems.length / 2;
 
-export const MainList = () => {
-  const styles = listStyles();
+const Sidebar = () => {
+  const styles = SidebarStyles();
   const location = useLocation();
 
   const listItems: sidebarListItem[] = useMemo(() => {
@@ -97,42 +97,4 @@ export const MainList = () => {
   );
 };
 
-const listStyles = makeStyles({
-  optionContainer: {
-    position: "relative",
-    width: "225px",
-    height: "74px",
-    borderRadius: "100px !important",
-    marginTop: "20px !important",
-    left: "30px",
-  },
-  optionContentContainer: {
-    position: "absolute",
-    width: "101px",
-    height: "25px",
-    display: "flex",
-    top: "25px",
-    left: "35px",
-    justifyContent: "center",
-    alighItems: "center",
-  },
-  activeOptionContainer: {
-    backgroundColor: "#F3F0FF !important",
-  },
-  activeOptionText: {
-    color: "#551FFF",
-  },
-  optionText: {
-    position: "relative",
-    width: "57px",
-    height: "25px",
-    letterSpacing: "-0.02em",
-    left: "20px",
-  },
-  listDividerContainer: {
-    position: "relative",
-    left: "45px",
-    width: "198px",
-    marginTop: "20px",
-  },
-});
+export default Sidebar;

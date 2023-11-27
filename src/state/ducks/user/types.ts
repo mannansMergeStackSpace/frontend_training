@@ -19,12 +19,16 @@ export interface User {
   _id: string;
   name: string;
   email: string;
-  currentPlan: string;
-  createdAt: string;
+  createdAt?: string;
 
   plan?: Plan;
   projects?: Project[];
   requests?: Request[];
+  contributors?: Contributor[];
+}
+
+export interface Contributor {
+  contributor: User;
 }
 
 export interface Plan {
@@ -33,6 +37,7 @@ export interface Plan {
   maximumProjects: number;
   maximumUsers: number;
   requestsPerMonth: number;
+  price: number;
   createdAt: string;
 }
 

@@ -1,10 +1,42 @@
 import { Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
+import { FC, useMemo } from "react";
+import { User } from "state/ducks/user/types";
 import ProgressBar from "../progressBar";
+import PlanStyles from "./plan.styles";
 
-const Plan = () => {
-  const cStyles = planStyles();
+interface AllTypes {
+  user: User;
+}
+
+const Plan: FC<AllTypes> = ({ user }: AllTypes) => {
+  const cStyles = PlanStyles();
+
+  const { projects, planPrice, contributors, requests } = useMemo(() => {
+    const { plan, requests, contributors, projects } = user;
+    return {
+      projects: {
+        totalProjects: plan?.maximumProjects || 0,
+        currentProjects: projects?.length || 0,
+        progress:
+          ((projects?.length || 0) / (plan?.maximumProjects || 0)) * 100, // percentage
+      },
+      contributors: {
+        totalContributors: plan?.maximumUsers || 0,
+        currentContributors: contributors?.length,
+        progress:
+          ((contributors?.length || 0) / (plan?.maximumUsers || 0)) * 100, // percentage
+      },
+      requests: {
+        totalRequests: plan?.requestsPerMonth || 0,
+        currentRequests: requests?.length || 0,
+        progress:
+          ((requests?.length || 0) / (plan?.requestsPerMonth || 0)) * 100, // percentage
+      },
+      planPrice: plan?.price || 0,
+    };
+  }, [user]);
+
   return (
     <Box className={cStyles.planContainer}>
       <Box className={cStyles.chartHeadline}>
@@ -39,7 +71,7 @@ const Plan = () => {
               color={"info.main"}
               className={cStyles.planPrice}
             >
-              $99/mo
+              ${planPrice}/mo
             </Typography>
           </Box>
           <Box className={cStyles.planArrowIconContainer}>
@@ -64,12 +96,12 @@ const Plan = () => {
               color={"info.main"}
               className={cStyles.projectBarTypography}
             >
-              1/3
+              {`${projects.currentProjects}/${projects.totalProjects}`}
             </Typography>
           </Box>
           <ProgressBar
-            sx={{ ...commonProgressBarStyles }}
-            value={20}
+            sx={{ ...commonProgressBarStyles, color: "primary.main" }}
+            value={projects.progress}
             variant="determinate"
           />
         </Box>
@@ -88,12 +120,12 @@ const Plan = () => {
               className={cStyles.projectBarTypography}
               variant="smallRegular"
             >
-              1/3
+              {`${contributors.currentContributors}/${contributors.totalContributors}`}
             </Typography>
           </Box>
           <ProgressBar
-            sx={{ ...commonProgressBarStyles }}
-            value={20}
+            sx={{ ...commonProgressBarStyles, color: "primary.light" }}
+            value={contributors.progress}
             variant="determinate"
           />
         </Box>
@@ -112,13 +144,16 @@ const Plan = () => {
               className={cStyles.projectBarTypography}
               variant="smallRegular"
             >
-              1/3
+              {`${requests.currentRequests}/${requests.totalRequests}`}
             </Typography>
           </Box>
           <Box>
             <ProgressBar
-              sx={{ ...commonProgressBarStyles }}
-              value={20}
+              sx={{
+                ...commonProgressBarStyles,
+                color: "primary.contrastText",
+              }}
+              value={requests.progress}
               variant="determinate"
             />
           </Box>
@@ -133,114 +168,3 @@ const commonProgressBarStyles = {
   height: "6px",
   borderRadius: "16px",
 };
-
-const planStyles = makeStyles({
-  planContainer: {
-    position: "relative",
-    top: "110px",
-    width: "446px",
-    height: "404px",
-    borderRadius: "24px",
-    background: "#FFFFFF",
-  },
-  chartHeadline: {
-    width: "285px",
-    height: "54px",
-    top: "35px",
-    left: "40px",
-    position: "relative",
-    fontFamily: "Averta-Semibold",
-    textAlign: "left",
-  },
-  planInfoHeading: {
-    position: "relative",
-    width: "300px",
-    height: "32px",
-    letterSpacing: "-0.02em",
-  },
-  planInfoSubHeading: {
-    letterSpacing: "0em !important",
-  },
-  planInfoContainer: {
-    position: "relative",
-    width: "371px",
-    height: "63px",
-    top: "35px",
-    borderRadius: "16px",
-    display: "flex",
-  },
-  planIconContainer: {
-    width: "63px",
-    height: "63px",
-    top: "119px",
-    left: "40px",
-    borderRadius: "16px",
-    background: "#F1FBFF",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  planIcon: {
-    width: "24px",
-    height: "24px",
-  },
-
-  planNamePriceContainer: {
-    position: "relative",
-    left: "14px",
-    paddingTop: "10px",
-    display: "flex",
-    flexDirection: "column",
-  },
-
-  planName: {
-    width: "90px",
-    height: "17px",
-    letterSpacing: "-0.02em",
-    textAlign: "left",
-  },
-  planPrice: {
-    width: "63px",
-    height: "24px",
-    letterSpacing: "-0.02em",
-    textAlign: "left",
-  },
-  planArrowIconContainer: {
-    position: "absolute",
-    height: "50px",
-    width: "50px",
-    right: "0px",
-    display: "flex",
-    alignItems: "center",
-  },
-  planArrowIcon: {
-    position: "relative",
-    width: "24px",
-    height: "24px",
-    padding: "0px, 6.96px, 0px, 7px",
-    angle: "90 deg",
-  },
-  progressBarCointainer: {
-    position: "relative",
-    width: "366px",
-    height: "31px",
-    top: "50px",
-    borderRadius: "16px",
-    marginBottom: "20px",
-    marginTop: "20px",
-  },
-  progressBarTypographyContainer: {
-    position: "relative",
-    display: "flex",
-    justifyContent: "space-between",
-    marginBottom: "5px",
-  },
-  projectBarTypography: {
-    letterSpacing: "-0.02em",
-    textAlign: "left",
-  },
-  projectBarStyles: {
-    height: "6px",
-    borderRadius: "16px",
-  },
-});

@@ -33,15 +33,15 @@ const TopBar = () => {
   return (
     <AppBar open={true}>
       <Toolbar
-        sx={{
-          mt: "35px",
-          ml: "35px",
+        style={{
+          marginTop: "35px",
+          marginLeft: "35px",
         }}
       >
         <Box>
           <Typography
             variant="h3"
-            sx={{
+            style={{
               height: "53px",
               letterSpacing: "-0.02em",
               textAlign: "left",
@@ -52,7 +52,7 @@ const TopBar = () => {
           </Typography>
           <Typography
             variant="mediumRegular"
-            sx={{
+            style={{
               letterSpacing: "0em",
               textAlign: "left",
             }}
@@ -62,7 +62,7 @@ const TopBar = () => {
           </Typography>
         </Box>
         <Box
-          sx={{
+          style={{
             position: "absolute",
             width: "399px",
             height: "61px",
@@ -84,7 +84,7 @@ const TopBar = () => {
           />
           <Typography
             variant="mediumBold"
-            sx={{
+            style={{
               width: "280px",
               height: "24px",
               letterSpacing: "0em",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, useMemo } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { Request } from "state/ducks/user/types";
 
 ChartJS.register(
   CategoryScale,
@@ -48,31 +49,46 @@ export const options = {
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: Array(10000)
-        .fill(0)
-        .map(() => Math.random() * 10),
-      borderColor: "#7549FF",
-      backgroundColor: "white",
-      showLine: true,
-      fill: {
-        target: "origin",
-        below: "#7549FF",
-      },
-      tension: 0.5,
-      borderJoinStyle: "round",
-    },
-  ],
+const getLastSixHours = () => {
+  return Array(6)
+    .fill(0)
+    .map((v, index) => {
+      const currentDate = new Date();
+      return new Date(
+        currentDate.setHours(currentDate.getHours() - index)
+      ).toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      });
+    })
+    .reverse();
 };
 
-function LineChart() {
-  return <Line options={options} data={data as any} />;
+const labels = getLastSixHours();
+
+interface AllProps {
+  requests: Request[];
 }
+
+const LineChart: FC<AllProps> = ({ requests }: AllProps) => {
+  const data = useMemo(() => {
+    return {
+      labels,
+      datasets: [
+        {
+          label: "Dataset 1",
+          data: Array(10000) // logic for requests, group by at time
+            .fill(0)
+            .map(() => Math.random() * 10),
+          borderColor: "#7549FF",
+          tension: 0.5,
+        },
+      ],
+    };
+  }, []);
+
+  return <Line options={options} data={data} />;
+};
 
 export default LineChart;
