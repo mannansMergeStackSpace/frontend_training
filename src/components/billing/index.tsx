@@ -4,7 +4,7 @@ import { FC } from "react";
 import { IUserState } from "state/ducks/user/types";
 import Activity from "./activity";
 import BillingChart from "./chart";
-import InforBar from "./infoBar";
+import InforBar from "./info";
 
 const Billings: FC<IUserState> = ({
   data: { user },

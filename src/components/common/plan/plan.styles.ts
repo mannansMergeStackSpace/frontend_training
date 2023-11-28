@@ -15,7 +15,6 @@ const PlanStyles = makeStyles({
     top: "35px",
     left: "40px",
     position: "relative",
-    fontFamily: "Averta-Semibold",
     textAlign: "left",
   },
   planInfoHeading: {
@@ -85,29 +84,6 @@ const PlanStyles = makeStyles({
     height: "24px",
     padding: "0px, 6.96px, 0px, 7px",
     angle: "90 deg",
-  },
-  progressBarCointainer: {
-    position: "relative",
-    width: "366px",
-    height: "31px",
-    top: "50px",
-    borderRadius: "16px",
-    marginBottom: "20px",
-    marginTop: "20px",
-  },
-  progressBarTypographyContainer: {
-    position: "relative",
-    display: "flex",
-    justifyContent: "space-between",
-    marginBottom: "5px",
-  },
-  projectBarTypography: {
-    letterSpacing: "-0.02em",
-    textAlign: "left",
-  },
-  projectBarStyles: {
-    height: "6px",
-    borderRadius: "16px",
   },
 });
 

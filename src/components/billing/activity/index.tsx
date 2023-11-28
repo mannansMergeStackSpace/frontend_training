@@ -1,6 +1,7 @@
-import { Divider, List, Typography } from "@mui/material";
+import { List, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import ActivityStyles from "./styles/activity.styles";
+import SingleActivity from "./activity";
+import ActivityStyles from "./activity.styles";
 
 const Activity = () => {
   const styles = ActivityStyles();
@@ -24,18 +25,7 @@ const Activity = () => {
         {Array(4)
           .fill(0)
           .map(() => {
-            return (
-              <>
-                <Box className={styles.activityItemContainer}></Box>
-                <Box
-                  display="flex"
-                  justifyContent={"center"}
-                  alignItems={"center"}
-                >
-                  <Divider className={styles.activityDivider} />
-                </Box>
-              </>
-            );
+            return <SingleActivity message="" />;
           })}
       </List>
     </Box>
