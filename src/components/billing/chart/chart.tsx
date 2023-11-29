@@ -8,6 +8,8 @@ import {
   Title,
   Tooltip,
   Legend,
+  Colors,
+  Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { Request } from "state/ducks/user/types";
@@ -19,7 +21,9 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Colors,
+  Filler
 );
 
 export const options = {
@@ -67,6 +71,16 @@ const getLastSixHours = () => {
 
 const labels = getLastSixHours();
 
+const getGradientFill = () => {
+  const ctx = document
+    .createElement("canvas")
+    .getContext("2d") as CanvasRenderingContext2D;
+  const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+  gradient.addColorStop(0.3, "rgba(243, 240, 255, 1)");
+  gradient.addColorStop(0.7, "rgba(241, 237, 255, 0)");
+  return gradient;
+};
+
 interface AllProps {
   requests: Request[];
 }
@@ -83,6 +97,8 @@ const LineChart: FC<AllProps> = ({ requests }: AllProps) => {
             .map(() => Math.random() * 10),
           borderColor: "#7549FF",
           tension: 0.5,
+          fill: true,
+          backgroundColor: getGradientFill(),
         },
       ],
     };

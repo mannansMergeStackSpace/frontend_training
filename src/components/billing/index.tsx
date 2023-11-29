@@ -13,13 +13,11 @@ const Billings: FC<IUserState> = ({
 }: IUserState) => {
   return (
     <Box display={"flex"} position={"relative"} top={70}>
-      {user && ( // we can add some suspese or loader based on loading, forn now user check
-        <Box>
-          <InforBar user={user} />
-          <BillingChart user={user} />
-          <Plan user={user} />
-        </Box>
-      )}
+      <Box>
+        <InforBar user={user} />
+        <BillingChart user={user} />
+        <Plan user={user} />
+      </Box>
       <Activity />
     </Box>
   );

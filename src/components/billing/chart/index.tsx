@@ -7,7 +7,7 @@ import LineChart from "./chart";
 import ChartStyles from "./index.styles";
 
 interface AllTypes {
-  user: User;
+  user: User | null;
 }
 
 const BillingChart: FC<AllTypes> = ({ user }: AllTypes) => {
@@ -31,7 +31,7 @@ const BillingChart: FC<AllTypes> = ({ user }: AllTypes) => {
         left={50}
         position={"relative"}
       >
-        <LineChart requests={user.requests as Request[]} />
+        <LineChart requests={user?.requests as Request[]} />
       </Box>
     </Box>
   );

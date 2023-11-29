@@ -6,14 +6,14 @@ import ProgressBar, { ProgressBarProps } from "../progressBar";
 import PlanStyles from "./plan.styles";
 
 interface AllTypes {
-  user: User;
+  user: User | null;
 }
 
 const Plan: FC<AllTypes> = ({ user }: AllTypes) => {
   const cStyles = PlanStyles();
 
   const planDetails = useMemo<ProgressBarProps[]>((): ProgressBarProps[] => {
-    const { plan, requests, contributors, projects } = user;
+    const { plan, requests, contributors, projects } = user || {};
     const commonProgressBarStyles = {
       height: "6px",
       borderRadius: "16px",

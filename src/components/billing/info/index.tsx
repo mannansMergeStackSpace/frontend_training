@@ -5,7 +5,7 @@ import Info, { InfoProps } from "./info";
 import InfoBarStyles from "./infobar.styles";
 
 interface AllTypes {
-  user: User;
+  user: User | null;
 }
 
 const InforBar: FC<AllTypes> = ({ user }: AllTypes) => {

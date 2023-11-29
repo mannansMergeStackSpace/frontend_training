@@ -7,7 +7,6 @@ const InfoBarStyles = makeStyles({
     width: "928px",
     height: "150px",
     top: "50px",
-    // left: "30px",
     borderRadius: "20px",
     background: "#FFFFFF",
   },
