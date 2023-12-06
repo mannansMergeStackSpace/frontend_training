@@ -1,33 +1,19 @@
-import MuiDrawer from "@mui/material/Drawer";
-import { styled } from "@mui/material/styles";
-import { Box, List, ListItem, Typography } from "@mui/material";
-import { AppRoutesEnum } from "../../constants/enums/routes.enum";
-import { Link } from "react-router-dom";
-
-const drawerWidth: number = 305;
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: "border-box",
-  },
-}));
+import * as React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Box } from "@mui/system";
+import { Divider, Typography } from "@mui/material";
+import { AppRoutesEnum } from "constants/enums/routes.enum";
+import { useMemo } from "react";
+import SidebarStyles from "./styles/sidebar.styles";
 
 interface sidebarListItem {
   label: string;
   icon: string;
   to: string;
+  isActiveRoute?: boolean;
 }
 
-const listItems: sidebarListItem[] = [
+const primaryListItems: sidebarListItem[] = [
   {
     label: "Profile",
     icon: "/icons/Profile.svg",
@@ -60,46 +46,54 @@ const listItems: sidebarListItem[] = [
   },
 ];
 
-const SideBar = () => {
-  return (
-    <Drawer variant="permanent">
-      <Box
-        position={"relative"}
-        top={"55px"}
-        left={"81px"}
-        display={"flex"}
-        alignItems={"center"}
-        width={"141.11px"}
-        height={"100%"}
-      >
-        <img
-          src="/icons/logo.svg"
-          alt=""
-          height={"46.11px"}
-          width={"46.11px"}
-        />
-        <Typography>Nucleus</Typography>
-      </Box>
+const halfItemsCount = primaryListItems.length / 2;
 
-      <List>
-        {listItems.map((item: sidebarListItem) => (
-          <ListItem
-            style={{
-              height: "74px",
-              width: "255px",
-              top: "167px",
-              left: "40px",
-              borderRadius: "100px",
-              color: "#D0D2DA",
-            }}
-          >
-            <img src={item.icon} alt="" />
-            <Link to={item.to}>{item.label}</Link>
-          </ListItem>
-        ))}
-      </List>
-      {/* <Divider /> */}
-    </Drawer>
+const Sidebar = () => {
+  const styles = SidebarStyles();
+  const location = useLocation();
+
+  const listItems: sidebarListItem[] = useMemo(() => {
+    return primaryListItems.map((item: sidebarListItem) => {
+      return {
+        ...item,
+        isActiveRoute: location.pathname === item.to,
+      };
+    });
+  }, [location.pathname]);
+
+  return (
+    <React.Fragment>
+      {listItems?.map((item: sidebarListItem, index: number) => {
+        return (
+          <>
+            {index === halfItemsCount && (
+              <Box className={styles.listDividerContainer}>
+                <Divider />
+              </Box>
+            )}
+            <Link className={styles.link} to={item.to}>
+              <Box
+                className={`${styles.optionContainer} ${
+                  item.isActiveRoute && styles.activeOptionContainer
+                }`}
+              >
+                <Box className={styles.optionContentContainer}>
+                  <img src={item.icon} alt="" />
+                  <Typography
+                    variant="largeRegular"
+                    color={item.isActiveRoute ? "primary.light" : "info.dark"}
+                    className={styles.optionText}
+                  >
+                    {item.label}
+                  </Typography>
+                </Box>
+              </Box>
+            </Link>
+          </>
+        );
+      })}
+    </React.Fragment>
   );
 };
-export default SideBar;
+
+export default Sidebar;

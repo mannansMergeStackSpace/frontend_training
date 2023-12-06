@@ -1,29 +1,17 @@
-import Dashboard from "../components/dashboard";
-import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../state/ducks/index";
-import { fetchUser } from "../state/ducks/user/actions";
-import { IUserState } from "../state/ducks/user/types";
+import Dashboard from "components/dashboard";
+import { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "state/ducks/user/actions";
 
 const DashboardContainer = () => {
   const dispatch = useDispatch();
-
-  const stateToProps: IUserState = useSelector(
-    ({ user }: IApplicationState) => ({
-      loading: user.loading,
-      errors: user.errors,
-      data: user.data,
-    })
-  );
+  const userId = "6554b01209ab40124b64148d";
 
   const dispatchToProps = {
-    fetchUser: useCallback(
-      () => dispatch(fetchUser("6554b01209ab40124b64148d")),
-      [dispatch]
-    ),
+    fetchUser: useCallback(() => dispatch(fetchUser(userId)), [dispatch]),
   };
-
-  return <Dashboard {...stateToProps} {...dispatchToProps} />;
+  // will configure later
+  return <Dashboard {...dispatchToProps} />;
 };
 
 export default DashboardContainer;
