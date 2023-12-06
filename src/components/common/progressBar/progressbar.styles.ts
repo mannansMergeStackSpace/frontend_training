@@ -2,16 +2,11 @@ import { makeStyles } from "@mui/styles";
 
 const ProgressStyles = makeStyles({
   progressBarCointainer: {
-    position: "relative",
-    width: "366px",
-    height: "31px",
-    top: "50px",
     borderRadius: "16px",
-    marginBottom: "20px",
-    marginTop: "20px",
+    marginBottom: "30px",
+    marginTop: "30px",
   },
   progressBarTypographyContainer: {
-    position: "relative",
     display: "flex",
     justifyContent: "space-between",
     marginBottom: "5px",

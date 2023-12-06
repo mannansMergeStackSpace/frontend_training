@@ -2,6 +2,9 @@ import { Box, Typography } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
+import { useEffect, useState } from "react";
+import formatDate from "utils/formatDate";
+import TopbarStyles from "./styles/topbar.styles";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -30,77 +33,46 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const TopBar = () => {
+  const [date, setDate] = useState<string>("");
+  const styles = TopbarStyles();
+  // logic for date/ date-update on date change!
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const dateOptions: Intl.DateTimeFormatOptions = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+
+      const currentDate = formatDate(dateOptions, new Date());
+      setDate(currentDate);
+    }, 1 * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <AppBar open={true}>
-      <Toolbar
-        style={{
-          marginTop: "35px",
-          marginLeft: "35px",
-        }}
-      >
-        <Box>
-          <Typography
-            variant="h3"
-            style={{
-              height: "53px",
-              letterSpacing: "-0.02em",
-              textAlign: "left",
-            }}
-            color="info.main"
-          >
+      <Toolbar className={styles.toolbar}>
+        <Box className={styles.headingContainer}>
+          <Typography variant="h3" color="info.main" className={styles.heading}>
             Dashboard
           </Typography>
-          <Typography
-            variant="mediumRegular"
-            style={{
-              letterSpacing: "0em",
-              textAlign: "left",
-            }}
-            color="info.light"
-          >
+          <Typography variant="mediumRegular" color="info.light">
             Information about your current plan and usages
           </Typography>
         </Box>
-        <Box
-          style={{
-            position: "absolute",
-            width: "399px",
-            height: "61px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            right: 60,
-            backgroundColor: "#F4F5F7",
-            borderRadius: "12px",
-          }}
-        >
-          <img
-            style={{
-              width: "24px",
-              height: "24px",
-            }}
-            src="/icons/Calendar.svg"
-            alt=""
-          />
+        <Box className={styles.dateContainer}>
+          <img className={styles.icon} src="/icons/Calendar.svg" alt="" />
           <Typography
+            className={styles.date}
             variant="mediumBold"
-            style={{
-              width: "280px",
-              height: "24px",
-              letterSpacing: "0em",
-            }}
             color={"info.main"}
           >
-            Wednesday, 17 May 2021
+            {date}
           </Typography>
-          <img
-            style={{
-              width: "24px",
-              height: "24px",
-            }}
-            src="/icons/chevron-down1.png"
-            alt=""
-          />
+          <img className={styles.icon} src="/icons/chevron-down1.png" alt="" />
         </Box>
       </Toolbar>
     </AppBar>

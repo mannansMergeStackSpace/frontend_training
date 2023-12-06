@@ -13,21 +13,21 @@ export interface ProgressBarProps {
 }
 
 const ProgressBar: FC<ProgressBarProps> = (props) => {
-  const cStyles = ProgressStyles();
+  const styles = ProgressStyles();
 
   return (
-    <Box className={cStyles.progressBarCointainer}>
-      <Box className={cStyles.progressBarTypographyContainer}>
+    <Box className={styles.progressBarCointainer}>
+      <Box className={styles.progressBarTypographyContainer}>
         <Typography
           color={"info.main"}
-          className={cStyles.projectBarTypography}
+          className={styles.projectBarTypography}
           variant="smallRegular"
         >
           {props.title}
         </Typography>
         <Typography
           color={"info.main"}
-          className={cStyles.projectBarTypography}
+          className={styles.projectBarTypography}
           variant="smallRegular"
         >
           {props.progress}

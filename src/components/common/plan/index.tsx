@@ -1,7 +1,10 @@
-import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FC, useMemo } from "react";
 import { User } from "state/ducks/user/types";
+import CustomContainer from "../container";
+import CustomHeader from "../container/header";
+import CustomSubHeader from "../container/subHeader";
+import CustomInfo from "../info";
 import ProgressBar, { ProgressBarProps } from "../progressBar";
 import PlanStyles from "./plan.styles";
 
@@ -10,7 +13,7 @@ interface AllTypes {
 }
 
 const Plan: FC<AllTypes> = ({ user }: AllTypes) => {
-  const cStyles = PlanStyles();
+  const styles = PlanStyles();
 
   const planDetails = useMemo<ProgressBarProps[]>((): ProgressBarProps[] => {
     const { plan, requests, contributors, projects } = user || {};
@@ -44,56 +47,40 @@ const Plan: FC<AllTypes> = ({ user }: AllTypes) => {
   }, [user]);
 
   return (
-    <Box className={cStyles.planContainer}>
-      <Box className={cStyles.chartHeadline}>
-        <Typography
-          variant="h5"
-          color={"info.main"}
-          className={cStyles.planInfoHeading}
-        >
-          Current Plan
-        </Typography>
-        <Typography
-          variant={"smallRegular"}
-          color={"info.light"}
-          className={cStyles.planInfoSubHeading}
-        >
-          Information and usages of your current plan
-        </Typography>
-
-        <Box className={cStyles.planInfoContainer}>
-          <Box className={cStyles.planIconContainer}>
-            <img className={cStyles.planIcon} src="/icons/2User.svg" alt="" />
+    <Box className={styles.container}>
+      <CustomContainer
+        header={
+          <CustomHeader message="Current Plan" icon="/icons/Filter2.svg" />
+        }
+        subHeader={
+          <CustomSubHeader message="Information and usages of your current plan" />
+        }
+      >
+        <Box className={styles.infoContainer}>
+          <Box>
+            <CustomInfo
+              title={"Teams Plan"}
+              count={`$${user?.plan?.price || 0}/mo`}
+              icon={"/icons/2User.svg"}
+              background={"#F1FBFF"}
+              textVariant="smallRegular"
+              textColor="info.main"
+              numberVariant="mediumBold"
+              numberColor="info.main"
+            />
           </Box>
-          <Box className={cStyles.planNamePriceContainer}>
-            <Typography
-              variant={"smallRegular"}
-              color={"info.main"}
-              className={cStyles.planName}
-            >
-              Teams Plan
-            </Typography>
-            <Typography
-              variant={"mediumBold"}
-              color={"info.main"}
-              className={cStyles.planPrice}
-            >
-              ${user?.plan?.price || 0}/mo
-            </Typography>
-          </Box>
-          <Box className={cStyles.planArrowIconContainer}>
+          <Box>
             <img
-              className={cStyles.planArrowIcon}
+              className={styles.planArrowIcon}
               src="/icons/chevron-down2.svg"
               alt=""
             />
           </Box>
         </Box>
-
         {planDetails?.map((detail) => (
           <ProgressBar {...detail} />
         ))}
-      </Box>
+      </CustomContainer>
     </Box>
   );
 };

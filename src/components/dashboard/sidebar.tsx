@@ -1,5 +1,4 @@
 import * as React from "react";
-import ListItemButton from "@mui/material/ListItemButton";
 import { Link, useLocation } from "react-router-dom";
 import { Box } from "@mui/system";
 import { Divider, Typography } from "@mui/material";
@@ -72,8 +71,8 @@ const Sidebar = () => {
                 <Divider />
               </Box>
             )}
-            <Link to={item.to}>
-              <ListItemButton
+            <Link className={styles.link} to={item.to}>
+              <Box
                 className={`${styles.optionContainer} ${
                   item.isActiveRoute && styles.activeOptionContainer
                 }`}
@@ -88,7 +87,7 @@ const Sidebar = () => {
                     {item.label}
                   </Typography>
                 </Box>
-              </ListItemButton>
+              </Box>
             </Link>
           </>
         );

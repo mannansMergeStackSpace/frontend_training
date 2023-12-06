@@ -12,9 +12,8 @@ const SingleActivity: FC<ActivityProps> = ({ message }: ActivityProps) => {
 
   return (
     <>
-      {" "}
       <Box className={styles.activityItemContainer}>{message}</Box>
-      <Box display="flex" justifyContent={"center"} alignItems={"center"}>
+      <Box className={styles.dividerContainer}>
         <Divider className={styles.activityDivider} />
       </Box>
     </>

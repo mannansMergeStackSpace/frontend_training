@@ -2,19 +2,8 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { FC, ReactNode } from "react";
 
 declare module "@mui/material/styles" {
-  interface TypographyVariants {
-    largeRegular: React.CSSProperties;
-    largeBold: React.CSSProperties;
-    mediumRegular: React.CSSProperties;
-    mediumBold: React.CSSProperties;
-    normalBold: React.CSSProperties;
-    normalRegular: React.CSSProperties;
-    smallBold: React.CSSProperties;
-    smallRegular: React.CSSProperties;
-  }
-
   // allow configuration using `createTheme`
-  interface TypographyVariantsOptions {
+  export interface TypographyVariantsOptions {
     largeRegular: React.CSSProperties;
     largeBold: React.CSSProperties;
     mediumRegular: React.CSSProperties;
@@ -82,26 +71,32 @@ const CustomThemeProvider: FC<AllProps> = ({ mode, children }: AllProps) => {
       h1: {
         fontSize: "56px",
         lineHeight: "61.6px",
+        fontWeight: "bold",
       },
       h2: {
         fontSize: "48px",
         lineHeight: "52.8px",
+        fontWeight: "bold",
       },
       h3: {
         fontSize: "40px",
         lineHeight: "44px",
+        fontWeight: "bold",
       },
       h4: {
         fontSize: "32px",
         lineHeight: "35.2px",
+        fontWeight: "bold",
       },
       h5: {
         fontSize: "24px",
         lineHeight: "26.4px",
+        fontWeight: "bold",
       },
       h6: {
         fontSize: "20px",
         lineHeight: "22px",
+        fontWeight: "bold",
       },
       largeRegular: {
         fontSize: "20px",

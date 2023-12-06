@@ -11,6 +11,7 @@ import { IDispatchToProps } from "state/ducks/user/types";
 import Sidebar from "./sidebar";
 import AppRoutes from "routes";
 import TopBar from "./topbar";
+import MainStyles from "./styles/main.styles";
 
 const drawerWidth: number = 305;
 
@@ -48,59 +49,28 @@ const Dashboard: FC<IDispatchToProps> = ({ fetchUser }: IDispatchToProps) => {
     fetchUser();
   }, [fetchUser]);
 
+  const styles = MainStyles();
+
   return (
-    <Box style={{ display: "flex" }}>
+    <Box className={styles.mainContainer}>
       <CssBaseline />
       <TopBar />
       <Drawer variant="permanent" open={true}>
-        <Toolbar
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-          }}
-        >
-          <Box
-            top={"55px"}
-            left={"81px"}
-            position="absolute"
-            display={"flex"}
-            justifyContent="center"
-            alignItems={"center"}
-          >
-            <img
-              height={"46.11px"}
-              width={"46.11px"}
-              src="/icons/logo.svg"
-              alt=""
-            />
-            <Typography
-              position={"relative"}
-              fontWeight={"bold"}
-              variant="h5"
-              color={"primary.light"}
-              left={"8px"}
-            >
+        <Toolbar>
+          <Box className={styles.appNameContainer}>
+            <img className={styles.icon} src="/icons/logo.svg" alt="" />
+            <Typography variant="h5" color={"primary.light"}>
               Nucleus
             </Typography>
           </Box>
         </Toolbar>
 
-        <Box position={"relative"} flexDirection="column" top={"65px"}>
+        <Box>
           <Sidebar />
         </Box>
       </Drawer>
-      <Box
-        component="main"
-        style={{
-          backgroundColor: "#F8F9FC",
-          flexGrow: 1,
-          height: "100vh",
-          overflow: "auto",
-        }}
-      >
-        <Container maxWidth="xl" style={{ margin: 40 }}>
+      <Box component="main" className={styles.contentMainContainer}>
+        <Container maxWidth="xl">
           <AppRoutes />
         </Container>
       </Box>
